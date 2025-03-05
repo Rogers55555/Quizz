@@ -73,3 +73,32 @@
     <button onclick="cekJawaban()">Submit</button>
 </body>
 </html>
+
+<p id="timer">Waktu tersisa: 10:00</p>
+<script>
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var interval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = "Waktu tersisa: " + minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(interval);
+                display.textContent = "Waktu habis!";
+                alert("Waktu pengerjaan telah habis!");
+                // Tambahkan kode di sini jika ingin mengirim jawaban secara otomatis
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var timeLimit = 10 * 60, // 10 menit
+            display = document.getElementById("timer");
+        startTimer(timeLimit, display);
+    };
+</script>
